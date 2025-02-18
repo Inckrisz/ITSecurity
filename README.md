@@ -18,3 +18,6 @@ putty -> 10022 port, localhost, save session -> open
 ugyanaz név, jelszó
 
 win cmd ssh -p 10022 root@localhost
+logout close session
+
+scp -P 10022 root@localhost:anaconda-ks.cfg .(jelenlegi mappa) vagy Documents (elérési út)  

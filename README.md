@@ -1,1 +1,5 @@
 # ITSecurity
+
+almalinux
+putty
+winscp

@@ -11,4 +11,6 @@ capturenél jobb control
 # poweroff kikapcsolás
 Snapshot visszaállítási pont, Take kikapcsolt állapotban
 
-Virtualbox settings -> network -> adapter 1 advanced -> port forwarding ->
+Virtualbox settings -> network -> adapter 1 advanced -> port forwarding -> beállítani
+
+putty -> 10022 port, localhost, save session

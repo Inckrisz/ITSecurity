@@ -20,4 +20,10 @@ ugyanaz név, jelszó
 win cmd ssh -p 10022 root@localhost
 logout close session
 
-scp -P 10022 root@localhost:anaconda-ks.cfg .(jelenlegi mappa) vagy Documents (elérési út)  
+scp -P 10022 root@localhost:anaconda-ks.cfg .(jelenlegi mappa) vagy Documents (elérési út)  lekérés
+puttynál pscp
+egy fájlnák ezke jók, több fájlnál winscp
+
+winscp:
+localhost 10022 root a
+options -> preferences -> panels show hidden files

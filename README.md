@@ -30,3 +30,6 @@ options -> preferences -> panels show hidden files
 
 # uname parancs milyen op rendszer, -a kapcsolóval minden info
 # man info linux parancsról, -k keresés, -K teljes leírásban
+cat /etc/redhat-release
+
+

@@ -27,3 +27,6 @@ egy fájlnák ezke jók, több fájlnál winscp
 winscp:
 localhost 10022 root a
 options -> preferences -> panels show hidden files
+
+# uname parancs milyen op rendszer, -a kapcsolóval minden info
+# man info linux parancsról, -k keresés, -K teljes leírásban

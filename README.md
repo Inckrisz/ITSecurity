@@ -1,4 +1,4 @@
-# ITSecurity
+# ITSecurity, Szükséges eszközök
 
 almalinux
 putty
@@ -9,3 +9,6 @@ login: root password: a
 capturenél jobb control
 
 # poweroff kikapcsolás
+Snapshot visszaállítási pont, Take kikapcsolt állapotban
+
+Virtualbox settings -> network -> adapter 1 advanced -> port forwarding ->

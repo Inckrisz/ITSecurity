@@ -52,6 +52,11 @@ student 5005590
 .. 6555760
 dir 2526714
 
+/home/student/dir 2526714
+. 2526714
+.. 5005590
+
+egy katalógusban 
 
 
 # stat /root/anaconda-ks.cfg információ
@@ -65,6 +70,8 @@ Modify: 2022-02-06 17:57:20.091928325 +0100
 Change: 2022-02-06 17:57:20.091928325 +0100
  Birth: 2022-02-06 17:57:19.959927872 +0100
 
- 
+echo Hello > /home/student/greetings.txt
+5 betu + új sor karakter 6 bájt
+dnf dnf provides xxd dnf csomagkezelő
 
-
+# hardlink ln /home/student/greetings.txt /home/student/message.txt így a hivatkozás száma megnő 

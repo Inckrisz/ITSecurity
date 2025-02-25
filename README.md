@@ -74,4 +74,24 @@ echo Hello > /home/student/greetings.txt
 5 betu + új sor karakter 6 bájt
 dnf dnf provides xxd dnf csomagkezelő
 
-# hardlink ln /home/student/greetings.txt /home/student/message.txt így a hivatkozás száma megnő 
+# hardlink ln /home/student/greetings.txt /home/student/message.txt így a hivatkozás száma megnő, nem tudok különböző lemezeken hardlinket készíteni, se katalógusra
+
+[root@localhost ~]# cat /home/student/greetings.txt
+Hello
+[root@localhost ~]# cat /home/student/message.txt
+Hello
+
+[root@localhost ~]# echo Szevasz! /home/student/message.txt
+Szevasz! /home/student/message.txt
+így ugyanúgy a greetings.txt-t módosítottam
+
+az állományoknak a nevén kívűl minden attribútuma az inodehoz kötődik,
+pl greetings.txt 5568 inode number 2 hivatkozás:
+access vector
+linkek száma
+utolsó modusítás dátuma stb
+Hello\n 
+
+chmod a+w /home/student/message.txt
+
+# softlink ln -s vagyis hivatkozás, l betűvel kezdődik a jogosultságot leíró sztringje lrwxrwxrwx 

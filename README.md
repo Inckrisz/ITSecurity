@@ -59,7 +59,7 @@ dir 2526714
 egy katalógusban 
 
 
-# stat /root/anaconda-ks.cfg információ
+# stat /root/anaconda-ks.cfg információ, -L felbontja a hivatkozást
   File: /root/anaconda-ks.cfg
   Size: 1389            Blocks: 8          IO Block: 4096   regular file
 Device: 802h/2050d      Inode: 2097284     Links: 1
@@ -94,4 +94,7 @@ Hello\n
 
 chmod a+w /home/student/message.txt
 
-# softlink ln -s vagyis hivatkozás, l betűvel kezdődik a jogosultságot leíró sztringje lrwxrwxrwx 
+# softlink ln -s vagyis hivatkozás, l betűvel kezdődik a jogosultságot leíró sztringje lrwxrwxrwx ez ne m ad plusz jogosultságot az tudja olvasni, aki a hivatkozást is tudja
+ha törlöm, akkor no such file directory error kaphatok cat-eléskor
+
+chmod +x-r /home/student/dir

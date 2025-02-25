@@ -39,7 +39,20 @@ ls list, -al összes fájl, ls -lad /root maga a katalógus d directory
 ls -li /root/anaconda-ks.cfg inode number
 ls -lZ /root/anaconda-ks.cfg kontextus
 egyedi azonosító egy eszközön (inode) meghajtónként azonos is lehet
-ls -ali / 1. oszlop inode number, 
+katalógus olan fájl amiben inode és állomány név párok vannak
+ls -ali / 1. oszlop inode number, 3. oszlop az adott állományra hivatkozások száma, 
+rootnak ugyanaz a /.. /.
+/home 6555760
+. 6555760
+.. 128 (root)
+student 5005590 
+
+/home/student 5005590
+. 5005590
+.. 6555760
+dir 2526714
+
+
 
 # stat /root/anaconda-ks.cfg információ
   File: /root/anaconda-ks.cfg

@@ -98,3 +98,6 @@ chmod a+w /home/student/message.txt
 ha törlöm, akkor no such file directory error kaphatok cat-eléskor
 
 chmod +x-r /home/student/dir
+
+# 3. labor
+uname student pass student student felhasználó

@@ -101,3 +101,37 @@ chmod +x-r /home/student/dir
 
 # 3. labor
 uname student pass student student felhasználó
+
+owner owner
+user  group others
+rwx   rwx   rxw
+421   421   421
+
+echo Hello > /home/student/greeti                ngs.txt
+student others
+
+chmod 664 /home/student/greetings.txt
+u=r user read, go+x
+
+[root@localhost ~]# chmod u=r,go+x /home/student/greetings.txt
+[root@localhost ~]# chmod 662 /home/student/greetings.txt
+[root@localhost ~]# chmod 000 /home/student/greetings.txt
+
+chmod o=r /home/student/dir1/
+
+[student@localhost ~]$ ls -al dir1/
+ls: cannot access 'dir1/.': Permission denied
+ls: cannot access 'dir1/..': Permission denied
+ls: cannot access 'dir1/greetings.txt': Permission denied
+total 0
+d????????? ? ? ? ?            ? .
+d????????? ? ? ? ?            ? ..
+-????????? ? ? ? ?            ? greetings.txt
+
+chmod 222 /home/student/dir1/greetings.txt
+csak írni tudja a student
+
+umask
+0002
+
+d: 7 7 7 0002 -> 775 ha a student csinál directoryt

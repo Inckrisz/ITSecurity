@@ -102,10 +102,15 @@ chmod +x-r /home/student/dir
 # 3. labor
 uname student pass student student felhasználó
 
-owner owner
-user  group others
-rwx   rwx   rxw
-421   421   421
+set uid (első x) | set gid (második x) | sticky (harmadik x)
+sst
+421
+   owner owner
+   user  group others
+   rwx   rwx   rxw
+   421   421   421
+
+kis s ha alapból volt x jog, amúgy nagy S
 
 echo Hello > /home/student/greeti                ngs.txt
 student others
@@ -135,3 +140,20 @@ umask
 0002
 
 d: 7 7 7 0002 -> 775 ha a student csinál directoryt
+-: 6 6 6 0002 -> 664 ha a student más fájlt csinál
+
+sticky bit ha be volt állítva egy állományon akkor megmaradt a memóriában (erre régen volt szükség)
+katalógus esetén akkor törölni csak az állomány tulajdonosa tud a katalógusból törölni állományt pl /tmp
+chmod o+t /home/student/kat/
+drwxrwxrwt. 2 root    root     19 Mar  4 13:24 kat
+[student@localhost ~]$ rm kat/2.txt
+rm: remove write-protected regular empty file 'kat/2.txt'? y
+rm: cannot remove 'kat/2.txt': Operation not permitted
+
+chown student:student /home/student/kat/2.txt
+rm kat/2.txt
+most már le lehet törölni mert student owner lett 
+
+    set uid | set gid | sticky
+d:     -
+-:                        -

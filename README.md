@@ -256,3 +256,41 @@ man ACL
 ha 11. bit hianyzik nem tamogatja az aclt, ha '.' akkor támogatja de nincs , ha + akkor támogatja és be is van állítva
 # acl bejegyzéssel olvasni tudja az adott operátor feladat
 # távolítsunk el minden acl bejegyzést feladat
+
+dir katalogust csinalva arra aclt rakva nem örökli meg pl az a.txt
+
+ha a katalógusban létrehozott állományokra is érvényes legyen
+d:
+[root@localhost ~]# setfacl -m default:user:student:rw /dir/a.txt
+setfacl: /dir/a.txt: Only directories can have default ACLs
+[root@localhost ~]# setfacl -m default:user:student:rw /dir
+[root@localhost ~]# ls -ld /dir
+drwxr-x---+ 2 root root 19 Mar 11 13:10 /dir
+
+[root@localhost ~]# ls -l /dir/
+total 8
+-rw-r--r--. 1 root root 2 Mar 11 13:10 a.txt
+-rw-rw----+ 1 root root 2 Mar 11 13:14 b.txt
+[root@localhost ~]# getfacl /dir/b.txt
+getfacl: Removing leading '/' from absolute path names
+# file: dir/b.txt
+# owner: root
+# group: root
+user::rw-
+user:student:rw-
+group::---
+mask::rw-
+other::---
+
+# HF man ACL algoritmus  
+
+# Security Enhanced Policy
+
+dnf update
+dnf install httpd
+
+ha nem elég lemez almalinux 8.5 gpg key update
+https://serverfault.com/questions/1144827/alma-linux-8-update-fails-for-any-package-with-gpg-keys-check-fail
+sudo rpm --import https://repo.almalinux.org/almalinux/RPM-GPG-KEY-AlmaLinux
+
+

@@ -183,3 +183,40 @@ group::r--
 other::r--
 
 umask mondja meg hogy milyen jogosultsággal jönnek létre a fájlok
+
+setfacl 
+-m (hozzáadni v felülírni acl bejegyzést) user: <username>: rw group: csoport : rw
+
+-b -x   -n 
+
+
+setfacl -m user:student:r ./secret-message.txt
+
+[root@localhost ~]# getfacl ./secret-message.txt
+# file: secret-message.txt
+# owner: root
+# group: root
+user::rw-
+user:student:r--
+group::---
+mask::r--
+other::---
+
+maszk összevagyolása a 2 kijelölt sornak, vagyis user:student:r-- és group::---
+
+[root@localhost ~]# setfacl -m g:users:w ./secret-message.txt
+[root@localhost ~]# getfacl ./secret-message.txt
+# file: secret-message.txt
+# owner: root
+# group: root
+user::rw-
+user:student:r--
+group::---
+group:users:-w-
+mask::rw-
+other::---
+
+itt pedig user:student:r-- group::--- group:users:-w- a maszk
+
+
+

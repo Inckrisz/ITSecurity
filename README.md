@@ -254,3 +254,5 @@ other::---
 man ACL
 
 ha 11. bit hianyzik nem tamogatja az aclt, ha '.' akkor támogatja de nincs , ha + akkor támogatja és be is van állítva
+# acl bejegyzéssel olvasni tudja az adott operátor feladat
+# távolítsunk el minden acl bejegyzést feladat

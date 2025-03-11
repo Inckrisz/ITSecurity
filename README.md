@@ -165,3 +165,21 @@ d: 7 7 7 0002 -> 775 ha a student csinál directoryt
     set uid | set gid | sticky
 d:     -       2.         1.
 -:     3.                   -
+
+
+# 4. labor
+ACL bejegyzések
+.zshrc 
+
+0-s uid rendszergazd
+
+
+[root@localhost ~]# getfacl ./secret-message.txt
+# file: secret-message.txt
+# owner: root
+# group: root
+user::rw-
+group::r--
+other::r--
+
+umask mondja meg hogy milyen jogosultsággal jönnek létre a fájlok

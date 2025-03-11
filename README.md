@@ -187,7 +187,9 @@ umask mondja meg hogy milyen jogosultsággal jönnek létre a fájlok
 setfacl 
 -m (hozzáadni v felülírni acl bejegyzést) user: <username>: rw group: csoport : rw
 
--b -x   -n 
+-b -> törli az aclt
+-x -> acl bejegyzés törlése  
+-n -> a maszk marad   
 
 
 setfacl -m user:student:r ./secret-message.txt
@@ -218,5 +220,37 @@ other::---
 
 itt pedig user:student:r-- group::--- group:users:-w- a maszk
 
+[root@localhost ~]# setfacl -m g::x /secret-message.txt
+[root@localhost ~]# getfacl /secret-message.txt
+getfacl: Removing leading '/' from absolute path names
+# file: secret-message.txt
+# owner: root
+# group: root
+user::rw-
+user:student:r--
+group::--x
+group:users:-w-
+mask::rwx
+other::---
 
+[root@localhost ~]# usermod -G users student
+[root@localhost ~]# id student
+uid=1000(student) gid=1000(student) groups=1000(student),100(users)
 
+[root@localhost ~]# chown student:users /secret-message.txt
+[root@localhost ~]# getfacl /secret-message.txt
+getfacl: Removing leading '/' from absolute path names
+# file: secret-message.txt
+# owner: student
+# group: users
+user::rw-
+user:operator:rw-
+user:student:r--
+group::--x
+group:users:-w-
+mask::rwx
+other::---
+
+man ACL
+
+ha 11. bit hianyzik nem tamogatja az aclt, ha '.' akkor támogatja de nincs , ha + akkor támogatja és be is van állítva

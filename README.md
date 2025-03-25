@@ -293,9 +293,11 @@ ha nem elég lemez almalinux 8.5 gpg key update
 https://serverfault.com/questions/1144827/alma-linux-8-update-fails-for-any-package-with-gpg-keys-check-fail
 sudo rpm --import https://repo.almalinux.org/almalinux/RPM-GPG-KEY-AlmaLinux
 
+# 5. labor find parancs
+
 # 6. labor
 
-e emergency console root után rd.break et beírom
+e emergency console root előtt rd.break et beírom
 
 utána mount -o remount, rw /sysroot/
 chroot /sysroot/

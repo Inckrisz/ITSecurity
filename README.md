@@ -356,4 +356,34 @@ losetup -l
 
 mc (midnight commander)
 disk0 még benne van a /-ban és benne van a PASSWORD=1234
+tehát ha valaki hozzáférne a törölt lemezhez akkor is ki tudja olvasni
 
+losetup /dev/loop1 /disk1
+losetup -l 
+
+titkosítás keretrendszer
+cryptsetup luksFormat /dev/loop1 megkérdezi hogy formázni akarjuk-e yes
+8 betűs kisbetű nagybetűs jelszó
+csak azok tudják használni ezt a meghajtót akik ismerik a meghajtót
+
+cryptsetup luksOpen /dev/loop1 secret
+
+mkfs.ext2 /dev/mapper/secret 
+lsblk -f 
+
+mkdir /mnt/d1
+mount /dev/mapper/secret /mnt/d1/
+lsblk -f 
+
+find /mnt/
+
+beleírjuk megint
+echo PASSWORD > /mnt/d1/secret.txt
+find /mnt/ 
+
+törlés
+umount /mnt/d1/
+cryptsetup luksClose secret
+losetup -d /dev/loop1 
+
+megint mc-vel ellenőrizzük csak most a disk1-et, de titkosítva van

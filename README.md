@@ -293,4 +293,25 @@ ha nem elég lemez almalinux 8.5 gpg key update
 https://serverfault.com/questions/1144827/alma-linux-8-update-fails-for-any-package-with-gpg-keys-check-fail
 sudo rpm --import https://repo.almalinux.org/almalinux/RPM-GPG-KEY-AlmaLinux
 
+# 6. labor
+
+e emergency console root után rd.break et beírom
+
+utána mount -o remount, rw /sysroot/
+chroot /sysroot/
+
+passwd vmire átírjuk
+
+touch /.autorelabel
+
+exit 
+
+exit
+
+kb 2 perc utána rebootol
+
+utána enter az almalinuxra
+
+bejelentkezés új jelszóval
+
 

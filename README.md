@@ -302,7 +302,7 @@ e emergency console root előtt rd.break et beírom
 utána mount -o remount, rw /sysroot/
 chroot /sysroot/
 
-passwd vmire átírjuk
+passwd vmire átírjuk a jelszót
 
 touch /.autorelabel
 
@@ -316,4 +316,44 @@ utána enter az almalinuxra
 
 bejelentkezés új jelszóval
 
+https://exam.progcont.eu/docs/IT-Security/deprecated/reset-root-password.mp4
+
+lsblk - block deviceok listázása
+vboxban storage
+sda commandlineban az a -disk001.vdi
+sda 2 részre van osztva
+003.vdi az sr0
+
+lsblk -f egyedi azonosítókkal is kiírja a block deviceokat
+
+
+stat /dev/zero character special állomány, kiolvasni lehet belőle tetszőlegesen sok biteot, de ezek mind 0 byteok
+dd if=/dev/zero of=/disk0 bs=4096 count=10000
+dd if=/dev/zero of=/disk1 bs=4096 count=10000
+ezek játsszák a merevlemez szerepét
+
+losetup -l loopdeviceok listázása
+losetup -f 
+losetup -f /disk0 
+ezután lsblk loop0 is látszódik
+
+mkfs make file system (fájl rendszer csinálása a loop0hoz)
+különbség hogy hogyan ábrázolják a katalógus hierarchiákat
+mkfs.ext2 /dev/loop0
+így a loop0 kap egy azonosítót (lsblk -f)
+
+csatoljuk föl
+mkdir /mnt/d0
+mount /dev/loop0 /mnt/d0/
+find /mnt
+
+echo PASSWORD=1234 > /mnt/d0/secret.txt
+
+törlés
+umount /mnt/d0 
+losetup -d /dev/loop0
+losetup -l 
+
+mc (midnight commander)
+disk0 még benne van a /-ban és benne van a PASSWORD=1234
 

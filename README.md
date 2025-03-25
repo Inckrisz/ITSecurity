@@ -387,3 +387,4 @@ cryptsetup luksClose secret
 losetup -d /dev/loop1 
 
 megint mc-vel ellenőrizzük csak most a disk1-et, de titkosítva van
+https://exam.progcont.eu/docs/IT-Security/deprecated/slides-hu/encrypted-device.pdf

@@ -435,3 +435,13 @@ lvcreate --name small -L 10M big
 
 mkfs.xfs /dev/mapper/big-small
 
+cryptsetup luksFormat /dev/mapper/big-data
+YES (umount előbb)
+
+cryptsetup luksOpen /dev/mapper/big-data secret
+lsblk -f 
+
+mkfs.xfs /dev/mapper/secret
+
+mount /dev/mapper/secret /mnt
+lsblk -f 

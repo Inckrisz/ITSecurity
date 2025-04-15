@@ -388,3 +388,15 @@ losetup -d /dev/loop1
 
 megint mc-vel ellenőrizzük csak most a disk1-et, de titkosítva van
 https://exam.progcont.eu/docs/IT-Security/deprecated/slides-hu/encrypted-device.pdf
+
+
+# 7. labor
+
+sda, sdb sdc 
+mbr gpt
+fdisk gdisk el lehet partíciókat
+dnf install gdisk
+gdisk /dev/sdb 
+p 
+n új partíció alapok aztán w -vel írjuk
+utána gdisk /dev/sdc ugyanez

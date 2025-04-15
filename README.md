@@ -489,9 +489,33 @@ mv /key /keys/
 nano /etc/crypttab /keys/key luks átírni
 reboot
 
+crypttabban lehet - (vagy none) is a kulcsfájl helyénél így bootoláskor írja ki a gép
 
+feladat home directoryt encrypteld de ha vki bootol akkor ő is tudja használni de a homeban lévőkhöz ne férjen hozzá
 
+fdisk /dev/sda 
+n 
+p
+w
 
+lsblk -f (sda3)
+
+cryptsetup luksFormat /dev/sda3
+
+cryptsetup luksOpen /dev/sda3 secret-home
+mkfs.xfs /dev/mapper/secret-home fájl rendszert rakunk rá
+mount /dev/mapper/secret-home /mnt 
+
+find /home/
+mv /home/student /mnt/
+umount /mnt
+mount /dev/mapper/secret-home /home/
+find /home/
+
+lsblk -f fstabhoz az xfs fájlrendszer UUIDja
+nano /etc/fstab /home xfs default,nofail 0 0
+nano /etc/crypttab 
+secret-home UUID={sda3 UUID} - luks
 
 
 

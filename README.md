@@ -397,6 +397,41 @@ mbr gpt
 fdisk gdisk el lehet partíciókat
 dnf install gdisk
 gdisk /dev/sdb 
-p 
+p kilistázza a partíciókat
 n új partíció alapok aztán w -vel írjuk
 utána gdisk /dev/sdc ugyanez
+
+volume groupot csinálunk az sdb és sdcből  (sdb1 sdc1) és ebből logikai meghajtókat 
+
+pvs
+vgs
+pvcreate /dev/sdb1
+
+vgcreate -name ig /dev/sdb1
+
+vgcreate --+name big /dev/sdb1
+
+vgcreate big /dev/sdb1
+
+lvcreate --name data -L 20M big
+
+lvs
+
+lsblk
+
+pvcreate /dev/sdc1 
+pvs
+vgextend big /dev/sdc1
+pvs
+vgs
+
+lvs
+
+xfs_growfs /dev/mapper/big-data
+
+lsblk
+
+lvcreate --name small -L 10M big
+
+mkfs.xfs /dev/mapper/big-small
+

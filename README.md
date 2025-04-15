@@ -458,7 +458,7 @@ nano /etc/fstab
 UUID= (secret UUIDja ami lsblk val jön elő) /mnt xfs defaults 0 0
 reboot
 nem fog rebootolni
-nano /etc/fstab ilyenkor a defaults.nofail -re át kell írni
+nano /etc/fstab ilyenkor a defaults,nofail -re át kell írni
 reboot 
 lsblk -f a secret még mindig nem látszik
 cryptsetup luksOpen /dev/mapper/big-data example (nem muszaj secretnek lennie)
@@ -474,3 +474,29 @@ lsblk -f big-data UUID ctrl c
 nano /etc/crypttab első oszlop milyen néven, masodik uuid harmadik kulcs negyedik mivel szeretném használni
 valami UUID={big-data UUID} /key luks
 reboot
+ha most lsblk -f akkor látszik a secret (valami)
+
+vboxban lemezt hozzáadni 
+lsblk 
+mkfs.ext2 /dev/sdd
+mkdir /keys
+lsblk -f sdd UUID ctrl c
+
+nano /etc/fstab hozzáadjuk /keys ext2 defaults,nofail 0 0
+mount /keys
+lsblk 
+mv /key /keys/
+nano /etc/crypttab /keys/key luks átírni
+reboot
+
+
+
+
+
+
+
+
+
+
+
+

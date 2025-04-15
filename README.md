@@ -517,7 +517,7 @@ nano /etc/fstab /home xfs default,nofail 0 0
 nano /etc/crypttab 
 secret-home UUID={sda3 UUID} - luks
 
-
+boot időben fog jelszót kérni a rendszer és nem csatolja fel a home katalógust 
 
 
 

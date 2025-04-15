@@ -445,3 +445,32 @@ mkfs.xfs /dev/mapper/secret
 
 mount /dev/mapper/secret /mnt
 lsblk -f 
+
+
+reboot után csak ezután látszódik a secret xfs fájlrendszer
+cryptsetup luksOpen /dev/mapper/big-data secret
+lsblk -f 
+mount /dev/mapper/secret /mnt
+
+cat /etc/fstab
+nano /etc/fstab 
+
+UUID= (secret UUIDja ami lsblk val jön elő) /mnt xfs defaults 0 0
+reboot
+nem fog rebootolni
+nano /etc/fstab ilyenkor a defaults.nofail -re át kell írni
+reboot 
+lsblk -f a secret még mindig nem látszik
+cryptsetup luksOpen /dev/mapper/big-data example (nem muszaj secretnek lennie)
+
+echo -n (nincs újsor) almaAlma > /key
+umount /mnt 
+cryptsetup luksClose example
+lsblk -f 
+
+cryptsetup luksOpen /dev/mapper/big-data example --key-file=/key
+lsblk -f big-data UUID ctrl c
+
+nano /etc/crypttab első oszlop milyen néven, masodik uuid harmadik kulcs negyedik mivel szeretném használni
+valami UUID={big-data UUID} /key luks
+reboot

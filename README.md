@@ -519,6 +519,64 @@ secret-home UUID={sda3 UUID} - luks
 
 boot időben fog jelszót kérni a rendszer és nem csatolja fel a home katalógust 
 
+# 8. labor
+
+id - id student felhasználóról info
+cat /etc/passwd első oszlop fnév, utána jelszó, utána komment mező, home könyvtár, alapértelmezett shell
+/sin/nologin az különböző felhasználók számára van amik nem jelentkeznek be (pl processek)
+
+cat /etc/group csoportok, név:jelszó:id
+
+cat /etc/shadow a jelszavakat tartalmazza passwdből a shadowbe lettek átrakva a jelszavak, hashelve tároljuk
+
+useradd -c "Bob" bob felh létrehozása
+usermod -aG users bob hozzáadja az users csoporthoz bobot
+grep bob /etc/passwd grep bob /etc/shadow grep bob /etc/group
+
+chage -l bob jelszó manipulálásal kapcsolatos
+
+-m min days
+-M max days
+-W figyelmeztetés jelszó változtatásra
+-I inactive days
+
+shadow fileban 
+20200 1970től eltelt napok
+bob:!!:20200:0:99999:7:::
+
+passwd bob jelszó változtatás
+
+passwd -S bob
+
+passwd -l bob locked
+passwd -u bob unlocked 
+
+puttygen kulcspár generálásra windows
+
+mkdir /home/bob/.ssh
+cat > /home/bob/..sh/authorized_key public key
+
+chown -R bob:bob /home/bob/.ssh/
+chmod 700 /home/bob/.ssh/
+chmod 600 /home/bob/.ssh/authorized_keys
+ls -al /home/bob/.ssh/
+
+puttyon belül connection -> ssh -> authentication -> credentials -> private key for authentication
+
+ssh-keygen -l -f /etc/ssh/ssh_host_ecdsa_key.pub
+useradd eve
+su eve
+cd 
+find 
+ssh-keygen -f eve_key
+bob authorized key-jébe kell eve authorized key-jét (.pub)
+ssh bob@localhost 'cat >> .ssh/authorized_keys' < eve_key.pub 
+
+
+
+
+
+
 
 
 

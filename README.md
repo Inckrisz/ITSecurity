@@ -571,11 +571,15 @@ find
 ssh-keygen -f eve_key
 bob authorized key-jébe kell eve authorized key-jét (.pub)
 ssh bob@localhost 'cat >> .ssh/authorized_keys' < eve_key.pub 
+ssh -i eve_key bob@localhost (így nem kér bejelentkezést)
 
+mv eve_key .ssh/id_rsa
+így ssh bob@localhost is elég 
 
+winscp-vel is lehet csak advancednél jelszó helyett meg kell adni a keyt
 
-
-
+https://exam.progcont.eu/docs/IT-Security/deprecated/slides-hu/users.pdf
+https://exam.progcont.eu/docs/IT-Security/deprecated/slides-hu/ssh-key-auth.pdf
 
 
 

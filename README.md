@@ -655,18 +655,75 @@ visszafejtés
 [root@localhost ~]# openssl pkeyutl -verifyrecover -inkey rsa_key.pub -pubin -in d.rsa2
 
 [root@localhost ~]# openssl dgst -sign rsa_key -sha256 -out anaconda-ks.cfg.sign anacon
+[root@localhost ~]# openssl dgst -verify rsa_key.pub -signature anaconda-ks.cfg.sign -sha256 anaconda-ks.cfg
+privát kulccsal titkosított hash érték
 
+feladatok: visszafejteni rövid szöegeket
+pkcs8-al stb
 
+nyílvános kulcsot aláíratjuk valakivel 
+pl wikipédia digicert, digicert önmagát írja alá
+cert mgr windowson, itt lesz a digicert
 
+[root@localhost ~]# openssl genrsa -out ca.key 4096
 
+tanúsítvány létrehozása
+[root@localhost ~]# openssl req -key ca.key -new -out ca.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:HU
+State or Province Name (full name) []:Hajdu-Bihar
+Locality Name (eg, city) [Default City]:Debrecen
+Organization Name (eg, company) [Default Company Ltd]:Unideb
+Organizational Unit Name (eg, section) []:DEIK
+Common Name (eg, your name or your server's hostname) []:inf.unideb.hu
+Email Address []:
 
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
 
+[root@localhost ~]# openssl req -in ca.csr -text -noout
+ezzel megnézhetjük a tanúsítvány tartalmát
 
+[root@localhost ~]# openssl x509 -req -days 100 -in ca.csr -out ca.crt -signkey ca.key
+önmagunk írjuk alá ehhez csak a privát kulcsunk kell
 
+unidebhez 
+[root@localhost ~]# openssl genrsa -out web.key 4096
+[root@localhost ~]# openssl req -new -key web.key -out web.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:HU
+State or Province Name (full name) []:Hajdu-Bihar
+Locality Name (eg, city) [Default City]:Debrecen
+Organization Name (eg, company) [Default Company Ltd]:Unideb
+Organizational Unit Name (eg, section) []:DEIK
+Common Name (eg, your name or your server's hostname) []:www.inf.unideb.hu
+Email Address []:
 
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
 
+[root@localhost ~]# openssl x509 -req -days 10 -in web.csr -out web.crt -CA ca.crt -CAkey ca.key -CAcreateserial -CAserial ca.srl
+aláírás
 
+trust list milyen tanúsítványok vannak az OS-ben
 
+[root@localhost ~]# trust anchor ca.crt saját tanúsítvány --remove-al eltávolítani
 
 
 

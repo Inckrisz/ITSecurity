@@ -582,6 +582,34 @@ https://exam.progcont.eu/docs/IT-Security/deprecated/slides-hu/users.pdf
 https://exam.progcont.eu/docs/IT-Security/deprecated/slides-hu/ssh-key-auth.pdf
 
 
+# 9. labor
+OpenSSL
+
+[root@localhost ~]# man openssl
+[root@localhost ~]# date > d
+[root@localhost ~]# cat d
+Tue Apr 29 12:10:55 CEST 2025
+[root@localhost ~]# dd if=/dev/zero of=z bs=8 count=6
+6+0 records in
+6+0 records out
+48 bytes copied, 6.0716e-05 s, 791 kB/s
+[root@localhost ~]# xxd z
+-bash: xxd: command not found
+[root@localhost ~]# dnf provides xxd
+[root@localhost ~]# dnf install vim-common
+root@localhost ~]# xxd d
+[root@localhost ~]# openssl des-ecb -in d -K 0123456789012345 -out d.des-ecb
+ a bájtokat 8 bájtos blokkokra bnotjuk és titkosítjuk -K kulcs 16 hex szám
+[root@localhost ~]# xxd d.des-ecb
+helyes kulcssal lehet csak visszafejteni (1el több van a végén ezért nem tudja)
+[root@localhost ~]# openssl des-ecb -d -in d.des-ecb -K 01234567890123454
+
+most a z fájlból
+[root@localhost ~]# openssl des-ecb -in z -K 0123456789012345 -out z.des-ecb
+
+[root@localhost ~]# openssl des-cbc -in z -K 0123456789012345 -iv 0000000000000000 -out z.des-cbc
+kell hozzá -iv iinicalizáló blokk
+
 
 
 

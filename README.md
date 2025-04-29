@@ -725,5 +725,6 @@ trust list milyen tanúsítványok vannak az OS-ben
 
 [root@localhost ~]# trust anchor ca.crt saját tanúsítvány --remove-al eltávolítani
 
-
+feladat: saját tanúsítvány, seriallal
+utolsó előtti hét zh
 

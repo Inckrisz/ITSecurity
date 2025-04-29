@@ -611,6 +611,62 @@ most a z fájlból
 kell hozzá -iv iinicalizáló blokk
 
 
+[root@localhost ~]# openssl des-cbc -in z -k alma -p -out z.des-cbc                    *** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+salt=359FF87D91F5DC84
+key=6CEEEC942ED74032
+iv =F90D8B7B231B316D
+almából és saltból jön létre az iv
+
+[root@localhost ~]# openssl des-cbc -in z.des-cbc -k alma -d
+
+[root@localhost ~]# openssl des-cbc -in z -k alma -p -out z.des-cbc -S SALT SALT helyére a megadott salt
+
+[root@localhost ~]# openssl des-cbc -in z -k alma -p -out z.des-cbc -pbkdf2
+[root@localhost ~]# openssl des-cbc -k alma -in z.des-cbc -pbkdf2
+
+[root@localhost ~]# openssl des-cbc -k alma -in z -out  z.des-cbc -pbkdf2 -p
+
+[root@localhost ~]# openssl des-ede-cbc -k alma -in z -out  z.des-cbc -pbkdf2 -p
+dupla akkora lesz a kulcs
+
+[root@localhost ~]# openssl aes-128-cbc -k alma -in z -out z.aes-128-cbc -pbkdf2 -p
+128 bites kulcs
+192 bites
+256 bites
+
+[root@localhost ~]# openssl genrsa 512
+[root@localhost ~]# openssl genrsa -out rsa_key 512
+
+[root@localhost ~]# openssl rsa -in rsa_key -noout -text
+
+[root@localhost ~]# openssl rsa -in rsa_key -out rsa_key.pub -pubout
+[root@localhost ~]# openssl rsa -in rsa_key.pub -noout -text -pubin
+
+[root@localhost ~]# openssl pkcs8 -in rsa_key -topk8 -out rsa_key.enc
+encrypted 
+[root@localhost ~]# openssl pkcs8 -in rsa_key.enc -topk8 -nocrypt
+
+[root@localhost ~]# openssl pkeyutl -encrypt -in d -inkey rsa_key.pub -pubin -out d.rsa titkosítás
+[root@localhost ~]# openssl pkeyutl -decrypt -in d.rsa -inkey rsa_key
+visszafejtés
+
+[root@localhost ~]# openssl pkeyutl -sign -inkey rsa_key -in d -out d.rsa2
+[root@localhost ~]# openssl pkeyutl -verifyrecover -inkey rsa_key.pub -pubin -in d.rsa2
+
+[root@localhost ~]# openssl dgst -sign rsa_key -sha256 -out anaconda-ks.cfg.sign anacon
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

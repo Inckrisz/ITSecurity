@@ -752,20 +752,47 @@ könnyen használható egyszerű tűzfal szoftver a firewalld
 
 ufw hasonló a firewalld-hez más rendszereken
 
+dnf install httpd     apache webszerver
+systemctl status httpd
+systemctl start httpd
+
+ss port info
+ss -tl , vagy ss -tln , ss -tlnp      p processek tcp porton
+
+VM beállítás network port forwarding host vmi port, guest 80
+localhost:10080
+
+systemctl stop firewalld
+
+nft list ruleset
 
 
+table ip filter {
+        chain INPUT {
+                type filter hook input priority filter; policy accept;
+        }
 
+        chain FORWARD {
+                type filter hook forward priority filter; policy accept;
+        }
 
+        chain OUTPUT {
+                type filter hook output priority filter; policy accept;
+        }
+}
 
+firewall-cmd --list-all
+másik absztrakciós szint zónákban gondolkodik
 
+firewall-cmd --get-default-zone
 
+rpm -ql firewalld
+redhat package manager milyen csomagokat tartalmaz a firewalld
 
+cat /usr/lib/firewalld/services/cockpit.xml
 
+dnf install cockpit --nogpgcheck
+systemctl start cockpit
 
-
-
-
-
-
-
+firewall-cmd --panic-on összes kapcsolatot tiltja, --panic-off at lehet kikapcsolni
 

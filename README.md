@@ -740,3 +740,32 @@ exam submit
 várható feladatok: honlapon lévő videók
 https://exam.progcont.eu/docs/IT-Security/deprecated/ 
 
+# Linux tűzfal
+
+kernelbe van beépítve egy modul netfilter modul
+ipchains         iptables  ez ipv4          nftables
+                 ip6tables ez ipv6
+balról jobbra az újabb
+
+                  firewalld                 firewalld
+könnyen használható egyszerű tűzfal szoftver a firewalld
+
+ufw hasonló a firewalld-hez más rendszereken
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

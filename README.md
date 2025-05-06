@@ -728,3 +728,11 @@ trust list milyen tanúsítványok vannak az OS-ben
 feladat: saját tanúsítvány, seriallal
 utolsó előtti hét zh
 
+# Utolsó óra
+
+https://exam.progcont.eu/it-security/login
+
+exam parancs
+
+exaim init
+exam submit

@@ -736,3 +736,7 @@ exam parancs
 
 exaim init
 exam submit
+
+várható feladatok: honlapon lévő videók
+https://exam.progcont.eu/docs/IT-Security/deprecated/ 
+

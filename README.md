@@ -795,4 +795,31 @@ dnf install cockpit --nogpgcheck
 systemctl start cockpit
 
 firewall-cmd --panic-on összes kapcsolatot tiltja, --panic-off at lehet kikapcsolni
+firewall-cmd --set-default-zone internal
+firewall-cmd --list-all
+firewall-cmd --list-all --zone public így hogy nem aktív a public is ki tudom írni a dolgait
+
+sudo -u root cat /etc/passwd
+sudo -u student cat /etc/shadow
+
+sudoers állomány
+EDIT=nano visudo 
+student ALL=(root) /bin/cat /etc/shadow
+így sudo cat /etc/shadow ezzel már a student is tudja catelni
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

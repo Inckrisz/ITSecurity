@@ -808,7 +808,248 @@ student ALL=(root) /bin/cat /etc/shadow
 így sudo cat /etc/shadow ezzel már a student is tudja catelni
 
 
+# MEGOLDÁSOK A VIDEÓKBÓL
 
+1.
+Find the directory in /root/86344 where the owner is not the root user. 
+Write the full (absolute) path name to the file: /root/86344.ans
+
+Megoldás:
+find /root/86344/ -not -user root >/root/86344.ans
+
+2.
+Create a new user with name user86315 and lock the password of the user!
+
+Megoldás:
+useradd user86315
+passwd -l user86315 
+
+3.Who signed the file /root/contract-86302.txt ,Anne,Bob, Carol, Daniel or Eve?
+
+The signature was created with the help of the SHA 256 hash algorithm and stored in the file:
+/root/contract-86302.sha256.signature
+
+-The public key of Anne is in /root/Anne-86302.pub.pem
+-The public key of Bob is in /root/Bob-86302.pub.pem
+-The public key of Carol is in /root/Carol-86302.pub.pem
+-The public key of Daniel is in /root/Daniel-86302.pub.pem
+-The public key of Daniel is in /root/Eve-86302.pub.pem
+
+Write the answer (the name) to the file:
+/root/86302.ans
+
+Megoldás:
+openssl dgst -verify /root/Anne-86302.pub.pem -signature /root/contract-86302.ha256.signature /root/contract-86302.txt
+... a többivel
+echo Carol > /root/86302.ans
+
+4. Dwonload the file 5d3a8e1b with the help of the command below.
+
+curl -o /5d3a8e1b https://progcont.hu/docs/IT-Security/loop/5d3a8e1b
+
+The file contains an encrypted filesystem in LUKS format. The password is: 5d3a8e1b. 
+Copy the contetn of the filesystem to the directory: /root
+
+
+Megoldás: 
+curl -o /5d3a8e1b https://progcont.hu/docs/IT-Security/loop/5d3a8e1b
+losetup -f /5d3a8e1b 
+cryptsetup luksOpen /dev/loop0 loop
+enter password
+mount /deev/mapper/loop /mnt
+ls /mnt
+cp /mnt/070f /root
+cp -r /mnt/lost+found /root
+
+
+5. Decrypt the /root/86261.enc f ile y using 86261 as the key and 0 as the initialization vector.
+The file was encrypted by using the aes-128-cbc alorithm. Save the result as /root/86261.txt
+
+Megoldás:
+openssl aes-128-cbc -d -in /root/86261.enc -K 86261 -iv 0
+Anthemiosz
+openssl aes-128-cbc -d -in /root/86261.enc -K 86261 -iv 0 > /root/86261.txt
+
+6. Decrypt the /root/86257.enc f ile y using 86257 password and the des-ede algorithm.
+Save the result as /root/86257.txt
+
+
+Megoldás:
+openssl des-ede -d -in /root/86257.enc -k 86257 
+Hippodamosz
+openssl des-ede -d -in /root/86257.enc -k 86257 > /root/86257.txt
+
+
+7. Sign the /root/86247.txt file with the following private key. Use the SHA 256 hash function.
+Save the signature as /root/86247.sign !
+
+BEGIN PRIVATE KEY
+[HERE IS THE PRIVATE KEY IN THE EXERCISE]
+END PRIVATE KEY
+
+Megoldás:
+umask 077
+cat >k
+openssl dgst -sign k -sha256 -out /root/86247.sign  /root/86247.txt
+xxd /root/86247.sign
+
+8. Set the permission of the /root/86237.txt file to read-only
+
+Megoldás:
+chmod 444 /root/86237.txt
+stat /root/86237.txt
+
+9. Give the read-only permissions to the operator user on the /root/86224.txt file with a new USER ACL entry
+(Do not change anything else about the file and do not give or take any other pemissions
+
+Megoldás:
+setfacl -m u:operator:r /root/86224.txt
+getfacl /root/86224.txt
+
+10. Set the owner of the /root/86211.txt file to the operator user. (Do not change anything else about the file)
+
+Megoldás:
+chown operator /root/86211.txt
+
+11. Create a file with name /root/86198.dat and with a size of 861980 bytes.
+dd if=/dev/zero of=/root/86198.dat bs=861980 
+
+12. Generate an 1024 bit RSA key and save it as /root/86191.pem as a PKCS8 private key.
+
+Megoldás:
+opnssl genpkey -algorithm RSA -pkey opt rsa_keygen_bits:1024 -out /root/86191.pem
+openssl rsa -noout -inkey /root/86191.pem
+
+13. Create a new /dev/sdc1 partition on the drive /dev/sdc. Format the partition with ext2
+filesystem and mount it to the /mnt folder in read only mode
+
+Megoldás: 
+fdisk /dev/sdc 
+n sok enter
+w 
+
+mkfs.ext2 /dev/sdc1 
+
+mount -o ro /dev/sdc1 /mnt 
+mount
+
+14. Allow the owner of the following private key to log in as the root user
+--Begin Private Key--
+key
+--End private key--
+
+Megoldás:
+copy the key (az egészet)
+cat >kk beillesztés
+umask
+mkdir .ssh
+ssh-keygen -y -f kk >.ssh/authorized_keys
+stat .ssh/authorized_keys
+
+
+MÁSODIK FELADATSOR
+
+1. Create the user160184 user and generate a new default RSA key /home/user1601844/..ssh/id_rsa for it
+without passphrase. Allows user160184 to og as root with the help of the RSA private key
+
+Megoldás: 
+useradd user160184
+su user160184
+ssh-keygen 
+enter
+ssh-copy-id root@localhost
+exit
+
+2. Find the directory in /root/160171/ in which the sticky bit is set. 
+Write the full absolute path name to the file:
+/root/160171.ans
+
+Megoldás: 
+find /root/160171/ -perm /1000
+find /root/160171/ -perm /1000 > /root/16071.ans
+
+3. Configure the user account operator so that its password expires on 2021-07-24 and its maximum number of days 
+between password change is 100.
+
+Megoldás:
+chage operator -M 100 
+chage operator -l
+chage operator -d 2021-04-15 
+
+4. Who signed the file /root/contract-160147.txt, Anne Bob Carol Daniel Or Eve?
+The signature was created with the help of the SHA 256 hash algorithm and stored in the file:
+/root/contract-160147.sha256.signature
+-The publickey of Anne is in /root/Anne-160147.pub.pem
+-The publickey of Bob is in..
+...
+-the public eky of Eve is in /root/Eve-160147.pub.pem
+Write the answer the name of the fiel:
+/root/160147.ans
+
+Megoldás:
+openssl dgst -verify /rootT/Anne-160147.pub.pem -signature /root/contract-1601447.sha256.signature -sha256
+	/root/contract-160147.txt
+...
+openssl dgst -verify /rootT/Eve-160147.pub.pem -signature /root/contract-1601447.sha256.signature -sha256
+	/root/contract-160147.txt
+
+echo Eve > /root/160147.ans
+
+5. Download the file e3.. with the help of the command below
+curl -o /e3 https://progcont.hu/docs/IT-Sec...
+
+The file contains an encrypted filesystem in LUKS format. The password is: e3fae9a2.
+Copy the content of the filesystem to the direectory: /root
+
+Megoldás:
+losetup -f /e3fae9a2 
+lsblk -f 
+cryptsetup luksOpen/dev/loop0 loop0 
+Enter passphrase: e3...
+mount /dev/mapper/loop0 /mnt
+cp /mnt/* /root
+
+6. Set the permission of the fiel /root/16...txt so that its permission shows as -r--rws--T in the directory listing
+
+Megoldás:
+chmod 3470 /root/160101.txt
+
+7. Delete all ACL entries of the file /root/160093.txt
+
+Megoldás:
+setfacl -b /root/160093.txt
+
+8. Set ownership of the file /root/160076.txt so that the owner will be operator and the owner group will be users
+Do not change anything else about the file
+
+Megoldás:
+chown operator:users /root/160076.txt 
+
+9. Copy the first 70 byte of the file /root/160...dat to the file /root/160...part 
+
+Megoldás:
+dd if=/root/160067.dat of=/root/160067.part bs=70 count=1
+
+10.
+Generate an 1024 bit RSA key and saave it as /root/160...perm as a PKCS8 private key.
+
+Megoldás:
+opnssl genpkey -algorithm RSA -pkey opt rsa_keygen_bits:1024 -out /root/160060.pem
+
+11.
+Create a new crypto_LUKS encrypted xfs filesystem on /dev/sdc and mount it to the /mnt directory
+
+Megoldás:
+crypstetup luksFormat /dev/sdc
+APPLEapple
+APPLEapple
+
+cryptsetup luksOpen /dev/sdc x
+APPLEaapple
+
+mkfs.fs /dev/mapper/x 
+umount /mnt/
+mount /dev/mapper/x /mnt
 
 
 
